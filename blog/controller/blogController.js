@@ -60,7 +60,7 @@ const updateBlog = async (req, res) => {
 
 const getAllBlog = async (req, res) => {
   try {
-    const blog = await blogModel.find();
+    const blog = await blogModel.find({}).populate("category");
     res.status(200).json({
       success: true,
       message: "All blogs are displayed successfully",
@@ -74,7 +74,7 @@ const getAllBlog = async (req, res) => {
 const getSingleBlog = async (req, res) => {
   try {
     const { id } = req.params;
-    const blog = await blogModel.findById(id);
+    const blog = await blogModel.findById(id).populate("category");
     res.status(200).json({
       success: true,
       message: "single blog are displayed successfully",
